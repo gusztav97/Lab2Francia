@@ -9,7 +9,26 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.widget.*;
+
 public class Lab2 extends AppCompatActivity {
+
+    private int playerCounter;
+    private int cpuCounter;
+    public void decButtonClicked(View v){
+
+
+        playerCounter--;
+        displayCounter();
+
+    }
+
+    private void displayCounter(){
+
+        TextView o = (TextView) findViewById(R.id.score);
+        o.setText(Integer.toString(playerCounter));
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
