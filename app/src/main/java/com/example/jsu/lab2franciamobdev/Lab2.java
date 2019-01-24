@@ -15,18 +15,19 @@ public class Lab2 extends AppCompatActivity {
 
     private int playerCounter;
     private int cpuCounter;
+
     public void decButtonClicked(View v){
 
 
         playerCounter--;
-        displayCounter();
+        displayScore();
 
     }
 
-    private void displayCounter(){
+    private void displayScore(){
 
         TextView o = (TextView) findViewById(R.id.score);
-        o.setText(Integer.toString(playerCounter));
+        o.setText("Player: " + Integer.toString(playerCounter) + ", Computer: " + Integer.toString(cpuCounter));
 
     }
 
@@ -45,6 +46,10 @@ public class Lab2 extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        playerCounter = 0;
+        cpuCounter = 0;
+        displayScore();
     }
 
     @Override
