@@ -10,13 +10,44 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.widget.*;
+import java.util.Random;
 
 public class Lab2 extends AppCompatActivity {
 
     private int playerCounter;
     private int cpuCounter;
 
-    public void decButtonClicked(View v){
+    Weapon playerWeapon;
+    Weapon cpuWeapon;
+
+    Random rand = new Random();
+
+    public void rockButtonClicked(View v) {
+        playerWeapon = Weapon.ROCK;
+
+        playerCounter--;
+        displayScore();
+
+        int n = rand.nextInt(2) + 0;
+
+        switch(n){
+            case 0: cpuWeapon = Weapon.PAPER;
+                break;
+            case 1: cpuWeapon = Weapon.ROCK;
+                break;
+            case 2: cpuWeapon = Weapon.SCISSORS;
+                break;
+        }
+
+    }
+    public void paperButtonClicked(View v){
+
+
+        playerCounter--;
+        displayScore();
+
+    }
+    public void scissorsButtonClicked(View v){
 
 
         playerCounter--;
@@ -24,8 +55,42 @@ public class Lab2 extends AppCompatActivity {
 
     }
 
+
+    public enum Weapon {
+
+        ROCK("Rock"),
+        PAPER("Paper"),
+        SCISSORS("Scissors");
+
+        private String message;
+
+        private Weapon(String msg) { message = msg; }
+
+        @Override
+        public String toString() { return message; }
+
+    };
+
     private void displayScore(){
 
+        if (playerWeapon == Weapon.ROCK && cpuWeapon == Weapon.SCISSORS){
+            playerCounter++;
+        }
+        else if (playerWeapon == Weapon.PAPER && cpuWeapon == Weapon.ROCK) {
+            playerCounter++;
+        }
+        else if (playerWeapon == Weapon.SCISSORS && cpuWeapon == Weapon.PAPER){
+            playerCounter++;
+        }
+        else if (cpuWeapon == Weapon.ROCK && playerWeapon == Weapon.SCISSORS){
+            cpuCounter++;
+        }
+        else if (cpuWeapon == Weapon.PAPER && playerWeapon == Weapon.ROCK) {
+            cpuCounter++;
+        }
+        else if (cpuWeapon == Weapon.SCISSORS && playerWeapon == Weapon.PAPER){
+            cpuCounter++;
+        }
         TextView o = (TextView) findViewById(R.id.score);
         o.setText("Player: " + Integer.toString(playerCounter) + ", Computer: " + Integer.toString(cpuCounter));
 
