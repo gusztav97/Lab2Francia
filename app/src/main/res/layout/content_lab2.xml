@@ -23,24 +23,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="top|center"
             android:text="@string/staticText" />
 
         <Button
             android:id="@+id/rockButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="rockButtonClicked"
             android:text="@string/rock" />
 
         <Button
             android:id="@+id/paperButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="paperButtonClicked"
             android:text="@string/paper" />
 
         <Button
             android:id="@+id/scissorsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="scissorsButtonClicked"
             android:text="@string/scissors" />
 
         <TextView
@@ -49,9 +53,20 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:id="@+id/playerWeaponView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/player_s_weapon" />
+
+        <TextView
+            android:id="@+id/cpuWeaponView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/computer_s_weapon" />
+
+        <TextView
+            android:id="@+id/resultView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

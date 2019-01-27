@@ -17,18 +17,34 @@ public class Lab2 extends AppCompatActivity {
     private int playerCounter;
     private int cpuCounter;
 
-    Weapon playerWeapon;
-    Weapon cpuWeapon;
+    private Weapon playerWeapon;
+    private Weapon cpuWeapon;
 
     Random rand = new Random();
 
     public void rockButtonClicked(View v) {
         playerWeapon = Weapon.ROCK;
 
-        playerCounter--;
+
+        int n = rand.nextInt(3) + 0;
+
+        switch(n){
+            case 0: cpuWeapon = Weapon.PAPER;
+                break;
+            case 1: cpuWeapon = Weapon.ROCK;
+                break;
+            case 2: cpuWeapon = Weapon.SCISSORS;
+                break;
+        }
         displayScore();
 
-        int n = rand.nextInt(2) + 0;
+    }
+    public void paperButtonClicked(View v){
+
+        playerWeapon = Weapon.PAPER;
+
+
+        int n = rand.nextInt(3) + 0;
 
         switch(n){
             case 0: cpuWeapon = Weapon.PAPER;
@@ -39,18 +55,23 @@ public class Lab2 extends AppCompatActivity {
                 break;
         }
 
-    }
-    public void paperButtonClicked(View v){
-
-
-        playerCounter--;
         displayScore();
-
     }
     public void scissorsButtonClicked(View v){
+        playerWeapon = Weapon.SCISSORS;
 
 
-        playerCounter--;
+        int n = rand.nextInt(3) + 0;
+
+        switch(n){
+            case 0: cpuWeapon = Weapon.PAPER;
+                break;
+            case 1: cpuWeapon = Weapon.ROCK;
+                break;
+            case 2: cpuWeapon = Weapon.SCISSORS;
+                break;
+        }
+
         displayScore();
 
     }
@@ -60,7 +81,8 @@ public class Lab2 extends AppCompatActivity {
 
         ROCK("Rock"),
         PAPER("Paper"),
-        SCISSORS("Scissors");
+        SCISSORS("Scissors"),
+        STARTING("START");
 
         private String message;
 
@@ -73,23 +95,58 @@ public class Lab2 extends AppCompatActivity {
 
     private void displayScore(){
 
+        TextView player = (TextView) findViewById(R.id.playerWeaponView);
+        TextView cpu = (TextView) findViewById(R.id.cpuWeaponView);
+        TextView result = (TextView) findViewById(R.id.resultView);
+
         if (playerWeapon == Weapon.ROCK && cpuWeapon == Weapon.SCISSORS){
             playerCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Player wins ... Rock blunts scissors!");
+
         }
         else if (playerWeapon == Weapon.PAPER && cpuWeapon == Weapon.ROCK) {
             playerCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Player wins ... Paper covers rock!");
         }
         else if (playerWeapon == Weapon.SCISSORS && cpuWeapon == Weapon.PAPER){
             playerCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Player wins ... Scissors cuts paper!");
         }
         else if (cpuWeapon == Weapon.ROCK && playerWeapon == Weapon.SCISSORS){
             cpuCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Computer wins ... Rock blunts scissors!");
         }
         else if (cpuWeapon == Weapon.PAPER && playerWeapon == Weapon.ROCK) {
             cpuCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Computer wins ... Paper covers rock!");
         }
         else if (cpuWeapon == Weapon.SCISSORS && playerWeapon == Weapon.PAPER){
             cpuCounter++;
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("Computer wins ... Scissors cuts paper!");
+        }
+
+        if(cpuWeapon == playerWeapon){
+            player.setText("Player's Weapon: " + playerWeapon.toString());
+            cpu.setText("Computer's Weapon: " + cpuWeapon.toString());
+            result.setText("DRAW!");
+        }
+
+        if(cpuWeapon == Weapon.STARTING && playerWeapon == Weapon.STARTING){
+            player.setText("Player Ready!");
+            cpu.setText("Computer Ready!");
+            result.setText("BEGIN!");
         }
         TextView o = (TextView) findViewById(R.id.score);
         o.setText("Player: " + Integer.toString(playerCounter) + ", Computer: " + Integer.toString(cpuCounter));
@@ -98,6 +155,11 @@ public class Lab2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        playerCounter = 0;
+        cpuCounter = 0;
+        playerWeapon = Weapon.STARTING;
+        cpuWeapon = Weapon.STARTING;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

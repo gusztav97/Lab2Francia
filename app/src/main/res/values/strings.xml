@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Lab2FranciaMobDev</string>
+    <string name="app_name">CS 408 Lab #2</string>
     <string name="action_settings">Settings</string>
     <string name="staticText">Welcome to Rock-Paper-Scissors!\n Please choose your weapon:</string>
     <string name="rock">ROCK</string>
     <string name="paper">PAPER</string>
     <string name="scissors">SCISSORS</string>
+    <string name="player_s_weapon">Player\'s Weapon:</string>
+    <string name="computer_s_weapon">Computer\'s Weapon:</string>
 </resources>
